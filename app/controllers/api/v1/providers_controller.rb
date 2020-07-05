@@ -8,7 +8,9 @@ class Api::V1::ProvidersController < ApplicationController
 
     render json: @providers
   end
-
+  def upload 
+    binding.pry
+  end
   # GET /providers/1
   def show
     render json: @provider

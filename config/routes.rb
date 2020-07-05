@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   resources :providers
   resources :patients
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-namespace :api do 
-    namespace :v1 do 
+post 'api/v1/providers/upload', to: 'providers#upload'  
+  namespace :api do 
+    namespace :v1 do  
+      get '/providers/upload', to: 'providers#upload' 
+      post '/providers/create', to: 'providers#create'
      resources :providers, only: [:index, :create, :destroy, :update]
     end 
   end 
