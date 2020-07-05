@@ -1,4 +1,6 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
+  post '/providers/create.json', to: 'providers#create'  
+        
   resources :virtual_charts
   resources :providers
   resources :patients

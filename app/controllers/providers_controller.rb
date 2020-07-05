@@ -14,7 +14,8 @@ class ProvidersController < ApplicationController
   end
 
   # POST /providers
-  def create
+  def create 
+    binding.pry
     @provider = Provider.new(provider_params)
 
     if @provider.save
