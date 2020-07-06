@@ -1,9 +1,9 @@
 class Api::V1::ProvidersController < ApplicationController
   before_action :set_provider, only: [:show, :update, :destroy]
-
+  
   # GET /providers
   def index 
-    binding.pry
+    
     @providers = Provider.all
 
     render json: @providers
@@ -18,13 +18,15 @@ class Api::V1::ProvidersController < ApplicationController
 
   # POST /providers
   def create 
+    params[:provider] = params
+      
     binding.pry
     @provider = Provider.new(provider_params)
-
+    binding.pry
     if @provider.save
       render json: @provider, status: :created, location: @provider
     else
-      render json: @provider.errors, status: :unprocessable_entity
+      render json: @provider.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -49,7 +51,8 @@ class Api::V1::ProvidersController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def provider_params
-      params.require(:provider).permit(:name, :job, :email, :password_digest)
+    def provider_params 
+      binding.pry
+      params.require(:provider).permit(:name, :job, :email, :password, :password_confirmation)
     end
 end
