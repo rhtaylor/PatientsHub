@@ -4,5 +4,8 @@ class VirtualChart < ApplicationRecord
 
   def patient 
      Patient.find(self.patient_id)
+  end 
+  def provider 
+    Provider.find(self.provider_id)
   end
 end 
