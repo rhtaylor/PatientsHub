@@ -13,9 +13,9 @@
 {name: 'Randy Taylor', email: "randyisbusy@gmail.com", age: 35}
 ]) 
 Provider.create([
-{ name: "Dr Strange", email: "Avergers@avengermail.com", job: "Dr MD/Surgeon"},
-{ name: "Super RN", email: "bestrn@rnmail.com", job: "RN"}, 
-{name: "Dr SuperMentalSmartGuy", email: "universnumberonemd@med.com", job: "Surgeon General"}
+{ name: "Dr Strange", email: "Avergers@avengermail.com", job: "Dr MD/Surgeon", password: '123', password_confirmation: '123'},
+{ name: "Super RN", email: "bestrn@rnmail.com", job: "RN", password: '1234', password_confirmation: '1234'}, 
+{name: "Dr SuperMentalSmartGuy", email: "universnumberonemd@med.com", job: "Surgeon General", password: '12345', password_confirmation: '12345'}
 ]) 
 
 VirtualChart.create([ 

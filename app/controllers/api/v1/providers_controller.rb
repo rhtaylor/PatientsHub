@@ -20,7 +20,18 @@ class Api::V1::ProvidersController < ApplicationController
   def create 
     params[:provider] = params
       
-    binding.pry
+    binding.pry  
+    ### to attach file from disc
+      desc "Import file"
+      task :import_file => :environment do
+      path = Rails.root.join("tmp", params[:provider][:avatar])
+
+      post = Post.first
+      File.open(path) do |io|
+      post.image.attach(io: io, filename: "sample.jpg")
+      end
+      end 
+      ### put in helper method 
     @provider = Provider.new(provider_params)
     binding.pry
     if @provider.save
@@ -53,6 +64,6 @@ class Api::V1::ProvidersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def provider_params 
       binding.pry
-      params.require(:provider).permit(:name, :job, :email, :password, :password_confirmation)
+      params.require(:provider).permit(:name, :job, :email, :password, :password_confirmation, :avatar)
     end
 end
