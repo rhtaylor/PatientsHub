@@ -1,29 +1,33 @@
 class Api::V1::ProvidersController < ApplicationController 
-    before_action :require_login
-    skip_before_action :require_login, only: [:login, :new, :login_user, :create]
+    # before_action :require_login
+    # skip_before_action :require_login, only: [:login, :new, :login_user, :create]
    
   before_action :set_provider, only: [:show, :update, :destroy]
   
   def login_user 
-    binding.pry 
+     
         password = params[:password]
         email = params[:email] 
         
         @provider = Provider.find_by(email: email)
          
-        
+        binding.pry
         if      @provider.try(:authenticate, password)  
-            
+            binding.pry
             # session[:id] = @provider.id
             # session[:provider_id] = @provider.id
             @switch = true
         else
             @switch = false 
             # @customer.nil? ? session[:errors] = "Email not found." : session[:errors] = 'Password incorrect.' 
-            session[:page] = 'login'
+            #session[:page] = 'login'
         end  
    
-        render json: @switch ? @customer : @customer.nil? ? "becaome a user" : "Error"
+         if @switch  
+            render json: @customer 
+         else 
+          render json: @customer.nil? ? "becaome a user" : "Error" 
+         end
     end 
   
 
