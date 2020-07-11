@@ -9,8 +9,12 @@ post 'api/v1/providers/upload', to: 'providers#upload'
   namespace :api do 
     namespace :v1 do  
       get '/providers/upload', to: 'providers#upload' 
-      post '/providers/create', to: 'providers#create'
-     resources :providers, only: [:index, :create, :destroy, :update]
+      post '/providers/create', to: 'providers#create' 
+      get '/virtual_charts_full', to: 'virtual_charts#full_record' 
+      post 'providers/login', to: 'providers#login_user'
+     resources :virtual_charts
+     resources :providers, only: [:index, :create, :destroy, :update] 
+     resources :patients
     end 
   end 
 

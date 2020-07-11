@@ -1,4 +1,4 @@
-class VirtualChartsController < ApplicationController
+class Api::V1::VirtualChartsController < ApplicationController
   before_action :set_virtual_chart, only: [:show, :update, :destroy]
 
   # GET /virtual_charts
@@ -7,8 +7,11 @@ class VirtualChartsController < ApplicationController
 
     render json: @virtual_charts
   end
-  def full_record 
-    @virtual_charts = VirtualChart.full_record_dataset
+  def full_record   
+     
+     render json: @full =  VirtualChart.full_record_dataset 
+     
+       
   end
 
   # GET /virtual_charts/1

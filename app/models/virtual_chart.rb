@@ -1,14 +1,16 @@
-class VirtualChart < ApplicationRecord
+class VirtualChart < ApplicationRecord 
+  
   belongs_to :provider
   belongs_to :patient 
   
-  def self.full_record_dataset 
-    self.all.map{|record| [record, record.patient, record.provider] }
+  def self.full_record_dataset  
+     VirtualChart.all.map{|chart| { "chart": chart, "patient": chart.patient, "provider": chart.provider } }
   end
 
   def patient 
      Patient.find(self.patient_id)
-  end 
+  end  
+
   def provider 
     Provider.find(self.provider_id)
   end 
