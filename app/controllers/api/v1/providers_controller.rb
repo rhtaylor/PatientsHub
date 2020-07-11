@@ -25,7 +25,7 @@ class Api::V1::ProvidersController < ApplicationController
    
         render json: @switch ? @customer : @customer.nil? ? "becaome a user" : "Error"
     end 
-  end
+  
 
   # GET /providers
   def index 
