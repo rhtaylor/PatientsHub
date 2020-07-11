@@ -6,8 +6,8 @@ class Api::V1::ProvidersController < ApplicationController
   
   def login_user 
     binding.pry 
-        password = params[:customer][:password]
-        email = params[:customer][:email] 
+        password = params[:password]
+        email = params[:email] 
         
         @provider = Provider.find_by(email: email)
          
