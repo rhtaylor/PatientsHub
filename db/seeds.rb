@@ -20,5 +20,8 @@ Provider.create([
 
 VirtualChart.create([ 
     {date: Date.today, note: "this is a really long nooooot!", patient_id: 1, provider_id: 1 }, 
-    {date: Date.today, note: "today I turn in my final project for flatiron!", patient_id: 3, provider_id: 3}
+    {date: Date.today, note: "today I turn in my final project for flatiron!", patient_id: 3, provider_id: 3},
+    {date: Date.today, note: "but what happens when I write forever and ever and ever and ever and neve stop typing", patient_id: 1, provider_id: 1 }, 
+    {date: Date.today, note: "test test test", patient_id: 3, provider_id: 1}
+
 ])

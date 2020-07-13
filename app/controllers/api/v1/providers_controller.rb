@@ -2,18 +2,18 @@ class Api::V1::ProvidersController < ApplicationController
     # before_action :require_login
     # skip_before_action :require_login, only: [:login, :new, :login_user, :create]
    
-  before_action :set_provider, only: [:show, :update, :destroy]
+  before_action :set_provider, only: [:show, :login, :update, :destroy]
   
   def login_user 
-     
-        password = params[:password]
-        email = params[:email] 
+        params[:provider] = params
+        password = params[:provider][:password]
+        email = params[:provider][:email] 
         
         @provider = Provider.find_by(email: email)
          
-        binding.pry
+        
         if      @provider.try(:authenticate, password)  
-            binding.pry
+            
             # session[:id] = @provider.id
             # session[:provider_id] = @provider.id
             @switch = true
@@ -23,8 +23,9 @@ class Api::V1::ProvidersController < ApplicationController
             #session[:page] = 'login'
         end  
    
-         if @switch  
-            render json: @customer 
+         if @switch 
+             redirect_to provider_path(@provider) 
+           
          else 
           render json: @customer.nil? ? "becaome a user" : "Error" 
          end
@@ -39,18 +40,22 @@ class Api::V1::ProvidersController < ApplicationController
     render json: @providers
   end
   def upload 
-    binding.pry
+    
   end
   # GET /providers/1
-  def show
+  def show 
+    binding.pry
     render json: @provider
   end
 
+  def show 
+    
+  end
   # POST /providers
   def create 
     params[:provider] = params
       
-    binding.pry  
+      
     ### to attach file from disc
       desc "Import file"
       task :import_file => :environment do
@@ -63,7 +68,7 @@ class Api::V1::ProvidersController < ApplicationController
       end 
       ### put in helper method 
     @provider = Provider.new(provider_params)
-    binding.pry
+    
     if @provider.save
       render json: @provider, status: :created, location: @provider
     else
@@ -93,7 +98,7 @@ class Api::V1::ProvidersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def provider_params 
-      binding.pry
+      
       params.require(:provider).permit(:name, :job, :email, :password, :password_confirmation, :avatar)
     end
 end

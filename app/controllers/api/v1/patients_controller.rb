@@ -2,12 +2,16 @@ class Api::V1::PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :update, :destroy]
 
   # GET /patients
-  def index
+  def index 
+    
     @patients = Patient.all
 
     render json: @patients
   end
-
+  def my_patients 
+     
+    render json: Provider.find(params[:provider_id]).patients
+  end
   # GET /patients/1
   def show
     render json: @patient

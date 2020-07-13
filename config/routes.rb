@@ -11,11 +11,19 @@ post 'api/v1/providers/upload', to: 'providers#upload'
       get '/providers/upload', to: 'providers#upload' 
       post '/providers/create', to: 'providers#create' 
       get '/virtual_charts_full', to: 'virtual_charts#full_record' 
-      post 'providers/login', to: 'providers#login_user'
+      post 'providers/login', to: 'providers#login_user' 
+      get '/providers/:provider_id/my_patients', to: 'patients#my_patients'
      resources :virtual_charts
-     resources :providers, only: [:index, :create, :destroy, :update] 
+     resources :providers, only: [:index, :create, :destroy, :update] do
+      resources :patients do 
+        resources :virtual_charts 
+      end
+     end
      resources :patients
     end 
   end 
 
 end
+ 
+
+#  @pro.patients.first.virtual_charts.build(note: "YO", date: Date.today)
