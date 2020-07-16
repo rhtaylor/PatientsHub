@@ -1,0 +1,32 @@
+
+[1mFrom:[0m /mnt/c/Users/swordfish/dev/flatiron/Portfolio/patientsHub/PatientsHub/app/controllers/api/v1/providers_controller.rb:25 Api::V1::ProvidersController#login_user:
+
+    [1;34m14[0m: [32mdef[0m [1;34mlogin_user[0m 
+    [1;34m15[0m:       params[[33m:provider[0m] = params
+    [1;34m16[0m:       password = params[[33m:provider[0m][[33m:password[0m]
+    [1;34m17[0m:       email = params[[33m:provider[0m][[33m:email[0m] 
+    [1;34m18[0m:       
+    [1;34m19[0m:       @provider = [1;34;4mProvider[0m.find_by([35memail[0m: email)
+    [1;34m20[0m:        
+    [1;34m21[0m:       
+    [1;34m22[0m:       [32mif[0m      @provider.try([33m:authenticate[0m, password)   
+    [1;34m23[0m:               [1;34m#adds the logged in user to the session logged in array[0m
+    [1;34m24[0m:               current_provider << @provider.id 
+ => [1;34m25[0m:         binding.pry
+    [1;34m26[0m:           [1;34m# session[:id] = @provider.id[0m
+    [1;34m27[0m:           [1;34m# session[:provider_id] = @provider.id[0m
+    [1;34m28[0m:           @switch = [1;36mtrue[0m
+    [1;34m29[0m:       [32melse[0m
+    [1;34m30[0m:           @switch = [1;36mfalse[0m 
+    [1;34m31[0m:           [1;34m# @customer.nil? ? session[:errors] = "Email not found." : session[:errors] = 'Password incorrect.' [0m
+    [1;34m32[0m:           [1;34m#session[:page] = 'login'[0m
+    [1;34m33[0m:       [32mend[0m  
+    [1;34m34[0m:  
+    [1;34m35[0m:        [32mif[0m @switch 
+    [1;34m36[0m:            redirect_to provider_path(@provider) 
+    [1;34m37[0m:          
+    [1;34m38[0m:        [32melse[0m 
+    [1;34m39[0m:         render [35mjson[0m: @customer.nil? ? [31m[1;31m"[0m[31mbecaome a user[1;31m"[0m[31m[0m : [31m[1;31m"[0m[31mError[1;31m"[0m[31m[0m 
+    [1;34m40[0m:        [32mend[0m
+    [1;34m41[0m:   [32mend[0m 
+

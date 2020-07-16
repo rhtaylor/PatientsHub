@@ -1,9 +1,16 @@
-class Api::V1::ProvidersController < ApplicationController 
-    # before_action :require_login
-    # skip_before_action :require_login, only: [:login, :new, :login_user, :create]
-   
-  before_action :set_provider, only: [:show, :login, :update, :destroy]
-  
+class Api::V1::ProvidersController < ApplicationController  
+    before_action :set_provider, only: [:show, :login, :update, :destroy] 
+
+  def current_provider  
+    #sets the session cookie 
+    session[:provider_id] ||= []
+  end 
+  def logged_in? 
+    current_provider != nil
+  end 
+
+    
+
   def login_user 
         params[:provider] = params
         password = params[:provider][:password]
@@ -12,8 +19,10 @@ class Api::V1::ProvidersController < ApplicationController
         @provider = Provider.find_by(email: email)
          
         
-        if      @provider.try(:authenticate, password)  
-            
+        if      @provider.try(:authenticate, password)   
+                #adds the logged in user to the session logged in array
+                current_provider << @provider.id 
+          binding.pry
             # session[:id] = @provider.id
             # session[:provider_id] = @provider.id
             @switch = true
