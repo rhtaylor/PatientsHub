@@ -20,14 +20,24 @@ class Api::V1::VirtualChartsController < ApplicationController
   end
 
   # POST /virtual_charts
-  def create
-    @virtual_chart = VirtualChart.new(virtual_chart_params)
+  def create  
+    
+    @provider_patient_vc = Provider.find(params[:provider_id]).patients.find_by(id: params[:patient_id]).virtual_charts.build(note: params[:note], date: Date.today, provider_id: params[:provider_id])
+    
+    if @provider_patient_vc.save  
+      
+      render json: @provider_patient_vc, status: :created, location: @virtual_chart
+    else  
+      
+      render json: @provider_patient_vc.errors, status: :unprocessable_entity
+    #@virtual_chart = VirtualChart.new(virtual_chart_params)
 
-    if @virtual_chart.save
-      render json: @virtual_chart, status: :created, location: @virtual_chart
-    else
-      render json: @virtual_chart.errors, status: :unprocessable_entity
-    end
+    # if @virtual_chart.save
+    #   render json: @virtual_chart, status: :created, location: @virtual_chart
+    # else
+    #   render json: @virtual_chart.errors, status: :unprocessable_entity
+    # end 
+    end 
   end
 
   # PATCH/PUT /virtual_charts/1

@@ -44,7 +44,7 @@ class Api::V1::ProvidersController < ApplicationController
   end
   # GET /providers/1
   def show 
-    binding.pry
+    
     render json: @provider
   end
 
@@ -54,20 +54,7 @@ class Api::V1::ProvidersController < ApplicationController
   # POST /providers
   def create 
     params[:provider] = params
-      
-      
-    ### to attach file from disc
-      desc "Import file"
-      task :import_file => :environment do
-      path = Rails.root.join("tmp", params[:provider][:avatar])
-
-      post = Post.first
-      File.open(path) do |io|
-      post.image.attach(io: io, filename: "sample.jpg")
-      end
-      end 
-      ### put in helper method 
-    @provider = Provider.new(provider_params)
+     @provider = Provider.new(provider_params)
     
     if @provider.save
       render json: @provider, status: :created, location: @provider
