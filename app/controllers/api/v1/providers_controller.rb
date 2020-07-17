@@ -22,7 +22,7 @@ class Api::V1::ProvidersController < ApplicationController
         if      @provider.try(:authenticate, password)   
                 #adds the logged in user to the session logged in array
                 current_provider << @provider.id 
-          binding.pry
+         
             # session[:id] = @provider.id
             # session[:provider_id] = @provider.id
             @switch = true
@@ -33,7 +33,8 @@ class Api::V1::ProvidersController < ApplicationController
         end  
    
          if @switch 
-             redirect_to provider_path(@provider) 
+             redirect_to api_v1_provider_path(@provider)  
+            #  api_v1_providers_path(@provider) returns all providers
            
          else 
           render json: @customer.nil? ? "becaome a user" : "Error" 
@@ -57,9 +58,7 @@ class Api::V1::ProvidersController < ApplicationController
     render json: @provider
   end
 
-  def show 
-    
-  end
+  
   # POST /providers
   def create 
     params[:provider] = params
