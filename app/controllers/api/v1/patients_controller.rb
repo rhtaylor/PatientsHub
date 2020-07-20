@@ -9,8 +9,8 @@ class Api::V1::PatientsController < ApplicationController
     render json: @patients
   end
   def my_patients 
-     
-    render json: Provider.find(params[:provider_id]).patients
+    
+    render json: Provider.find(params[:provider_id]).patients.uniq
   end
   # GET /patients/1
   def show
