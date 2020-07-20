@@ -12,22 +12,23 @@ class Api::V1::ProvidersController < ApplicationController
   def signout  
     binding.pry
       session.delete :provider_id  
-      render json: [provider: 'signed_out']
+      render json: {id: params[:id]}
     
   end
 
-  def login_user 
+  def login_user  
+    binding.pry
         params[:provider] = params
         password = params[:provider][:password]
         email = params[:provider][:email] 
-        
+        binding.pry
         @provider = Provider.find_by(email: email)
-         
+         binding.pry
         
         if      @provider.try(:authenticate, password)   
                 #adds the logged in user to the session logged in array
                 current_provider << @provider.id 
-         
+         binding.pry
             # session[:id] = @provider.id
             # session[:provider_id] = @provider.id
             @switch = true
