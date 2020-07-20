@@ -9,7 +9,10 @@ class Api::V1::ProvidersController < ApplicationController
     current_provider != nil
   end 
 
-  def my_patients  
+  def signout  
+    binding.pry
+      session.delete :provider_id  
+      render json: [provider: 'signed_out']
     
   end
 
