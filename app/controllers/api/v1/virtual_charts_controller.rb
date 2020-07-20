@@ -23,7 +23,7 @@ class Api::V1::VirtualChartsController < ApplicationController
   def create  
     
     @provider_patient_vc = Provider.find(params[:provider_id]).patients.find_by(id: params[:patient_id]).virtual_charts.build(note: params[:note], date: Date.today, provider_id: params[:provider_id])
-    
+    sleep 2
     if @provider_patient_vc.save  
       
       render json: @provider_patient_vc, status: :created, location: @virtual_chart
