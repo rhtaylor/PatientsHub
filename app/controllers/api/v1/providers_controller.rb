@@ -70,7 +70,7 @@ class Api::V1::ProvidersController < ApplicationController
     params[:provider] = params 
     
      @provider = Provider.new(provider_params)
-    
+    sleep 2
     if @provider.save
       render json: @provider, status: :created, location: @provider
     else
