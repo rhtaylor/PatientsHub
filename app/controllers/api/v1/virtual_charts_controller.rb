@@ -10,10 +10,14 @@ class Api::V1::VirtualChartsController < ApplicationController
   def full_record   
      
      render json: @full =  VirtualChart.full_record_dataset 
-     
-       
   end
 
+  def my_charts 
+    @provider = Provider.find(params[:provider_id])  
+    
+    @mycharts = @provider.virtual_charts  
+    render json: @mycharts 
+  end
   # GET /virtual_charts/1
   def show
     render json: @virtual_chart

@@ -21,8 +21,8 @@ class Api::V1::PatientsController < ApplicationController
   def create 
     @provider = Provider.find(params[:provider_id]) 
     binding.pry
-
-    @patient = Patient.new(patient_params)
+    @patient = @provider.patients.build(patient_params)
+    
 
     if @patient.save
       render json: @patient, status: :created, location: @patient
