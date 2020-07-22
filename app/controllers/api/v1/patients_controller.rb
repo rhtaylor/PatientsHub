@@ -18,7 +18,10 @@ class Api::V1::PatientsController < ApplicationController
   end
 
   # POST /patients
-  def create
+  def create 
+    @provider = Provider.find(params[:provider_id]) 
+    binding.pry
+
     @patient = Patient.new(patient_params)
 
     if @patient.save

@@ -16,7 +16,7 @@ post 'api/v1/providers/upload', to: 'providers#upload'
       post '/providers/:provider_id/:patient_id/virtual_chart', to: 'virtual_charts#create' 
       get '/providers/:provider_id/:patient_id/virtual_chart', to: 'virtual_charts#create'  
       post '/providers/signout', to: 'providers#signout' 
-    
+      post '/providers/:provider_id/patients/create', to: 'patients#create'
      resources :virtual_charts
      resources :providers, only: [:index, :show, :create, :destroy, :update] do
       resources :patients do 
