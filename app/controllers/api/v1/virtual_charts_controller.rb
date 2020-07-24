@@ -24,13 +24,16 @@ class Api::V1::VirtualChartsController < ApplicationController
   end
 
   # POST /virtual_charts
-  def create  
-    
-    @provider_patient_vc = Provider.find(params[:provider_id]).patients.find_by(id: params[:patient_id]).virtual_charts.build(note: params[:note], date: Date.today, provider_id: params[:provider_id])
+  def create   
+        params[:date] = Date.today 
+        binding.pry
+        @vc_new = VirtualChart.create(virtual_chart_params) 
+        binding.pry
+   
     sleep 2
-    if @provider_patient_vc.save  
+    if @vc_new.save  
       
-      render json: @provider_patient_vc, status: :created, location: @virtual_chart
+      render json: @vc_new, status: :created, location: @virtual_chart
     else  
       
       render json: @provider_patient_vc.errors, status: :unprocessable_entity
