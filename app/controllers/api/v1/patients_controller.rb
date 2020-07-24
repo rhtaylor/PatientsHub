@@ -24,7 +24,8 @@ class Api::V1::PatientsController < ApplicationController
     @patient = @provider.patients.build(patient_params)
     
 
-    if @patient.save
+    if @patient.save 
+      binding.pry
       render json: @patient, status: :created, location: @patient
     else
       render json: @patient.errors, status: :unprocessable_entity
