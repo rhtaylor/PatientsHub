@@ -20,12 +20,12 @@ class Api::V1::PatientsController < ApplicationController
   # POST /patients
   def create 
     @provider = Provider.find(params[:provider_id]) 
-    binding.pry
+    
     @patient = @provider.patients.build(patient_params)
     
 
     if @patient.save 
-      binding.pry
+      
       render json: @patient, status: :created, location: @patient
     else
       render json: @patient.errors, status: :unprocessable_entity

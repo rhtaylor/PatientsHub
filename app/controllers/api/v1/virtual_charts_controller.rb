@@ -25,10 +25,10 @@ class Api::V1::VirtualChartsController < ApplicationController
 
   # POST /virtual_charts
   def create   
-        params[:date] = Date.today 
-        binding.pry
+         
+        
         @vc_new = VirtualChart.create(virtual_chart_params) 
-        binding.pry
+        
    
     sleep 2
     if @vc_new.save  
