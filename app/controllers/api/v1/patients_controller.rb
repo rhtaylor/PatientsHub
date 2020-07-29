@@ -20,7 +20,7 @@ class Api::V1::PatientsController < ApplicationController
   # POST /patients
   def create 
     @provider = Provider.find(params[:provider_id]) 
-    
+    sleep 2
     @patient = @provider.patients.build(patient_params)
     
 

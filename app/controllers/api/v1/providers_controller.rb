@@ -66,7 +66,9 @@ class Api::V1::ProvidersController < ApplicationController
 
   
   # POST /providers
-  def create 
+  def create  
+    
+
     params[:provider] = params 
     
      @provider = Provider.new(provider_params)

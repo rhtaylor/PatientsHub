@@ -24,13 +24,15 @@ class Api::V1::VirtualChartsController < ApplicationController
   end
 
   # POST /virtual_charts
-  def create   
-         
+  def create 
+      
+       
+         params[:virtual_chart] = params
         
-        @vc_new = VirtualChart.create(virtual_chart_params) 
+        @vc_new = VirtualChart.new(virtual_chart_params) 
         
-   
-    sleep 2
+        sleep(3)
+    
     if @vc_new.save  
       
       render json: @vc_new, status: :created, location: @virtual_chart
