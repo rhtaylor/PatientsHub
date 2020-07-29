@@ -1,5 +1,6 @@
 class Api::V1::ProvidersController < ApplicationController  
     before_action :set_provider, only: [:show, :login, :update, :destroy] 
+    
 
   def current_provider  
     #sets the session cookie 
@@ -17,7 +18,7 @@ class Api::V1::ProvidersController < ApplicationController
   end
 
   def login_user  
-    
+        
         params[:provider] = params
         password = params[:provider][:password]
         email = params[:provider][:email] 
@@ -42,8 +43,9 @@ class Api::V1::ProvidersController < ApplicationController
              redirect_to api_v1_provider_path(@provider)  
             #  api_v1_providers_path(@provider) returns all providers
            
-         else 
-          render json: @customer.nil? ? "becaome a user" : "Error" 
+         else  
+          
+          render json: @provider.nil? ? "becaome a user" : {error: "Bad Password"} 
          end
     end 
   
