@@ -1,33 +1,22 @@
-# README
+# PatientsHub back-end json API 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* ruby -v 2.6.1p33 
 
-Things you may want to cover:
+* rails -v Rails 6.0.3.2
+ 
+* psql (PostgreSQL) 10.10 (Ubuntu 10.10-0ubuntu0.18.04.1) 
 
-* Ruby version
+* bcrypt
 
-* System dependencies
+* Configuration: 
+    * must allow Front-End resource CRUD permissions in config/initializers/cors
 
-* Configuration
+# HAPPY CHARTING
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-# Problem: Communication on a healthcare team about a patient. 
+# Problem: Communication with a healthcare team about a patient. 
 
 If you work in Healthcare you work on a team. Whether you are the top level MD or lower level hospital workers you all have the same patients. There are times information falls in a category grey area. This information does not really belong in the medication records chart or vital signs chart. This type of information can get lost unless you have the team in the room with you. PatientHub is an electronic platform for providers to share information about a patient. 
  
-# Getting Started 
-
+ 
 # Author 
 Randall Taylor
