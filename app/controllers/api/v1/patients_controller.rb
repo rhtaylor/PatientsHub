@@ -10,7 +10,13 @@ class Api::V1::PatientsController < ApplicationController
   end
   def my_patients 
     
-    render json: Provider.find(params[:provider_id]).patients.uniq
+            @patients = Provider.find(params[:provider_id]).patients.uniq
+             
+            if @patients.empty? 
+                render json: ['You have zero patients']
+            else 
+            render json: @patients  
+            end
   end
   # GET /patients/1
   def show
